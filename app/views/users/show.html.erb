@@ -12,8 +12,8 @@
   </section>
   <section>
     <h1>Github</h1>
-    <% @repos.each do |repo| %>
-      <%= link_to repo[:name], repo[:html_url] %>
+    <% user_repos.each do |repo| %>
+      <%= link_to repo.name, repo.url %>
     <% end %>
   </section>
 </section>
