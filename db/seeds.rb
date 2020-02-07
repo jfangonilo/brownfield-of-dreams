@@ -1,3 +1,5 @@
+User.destroy_all
+
 prework_tutorial_data = {
   "title"=>"Back End Engineering - Prework",
   "description"=>"Videos for prework.",
@@ -35,7 +37,6 @@ prework_tutorial.videos.create!({
   "thumbnail"=>"https://i.ytimg.com/vi/c2UnIQ3LRnM/hqdefault.jpg",
   "position"=>4
 })
-
 
 mod_1_tutorial_data = {
   "title"=>"Back End Engineering - Module 1",
@@ -116,3 +117,4 @@ m3_tutorial.videos.create!({
 })
 
 User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
+User.create!(email: 'default@example.com', first_name: 'Person', last_name: 'McPerserson', password: "p", role: :default)
