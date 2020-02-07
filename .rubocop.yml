@@ -1,5 +1,18 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/**/*'
+    - 'spec/**/**/*'
+    - 'node_modules/**/*'
+    - 'lib/tasks/*'
+    - 'bin/*'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Documentation:
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
