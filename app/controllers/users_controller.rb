@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     render locals: {
-      user_repos: RepoSearch.new.repos
+      facade: UserDashboardFacade.new(current_user)
     }
   end
 
