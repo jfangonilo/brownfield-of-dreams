@@ -3,7 +3,8 @@ require "rails_helper"
 feature "As a logged in user" do
   feature "when I visit my dashboard" do
     scenario "I see a section for github and see five repos which link to the repo on github", :vcr do
-      user = create(:user)
+      user = create(:user, github_token: ENV['GITHUB_TOKEN'])
+      user_2 = create(:user, github_token: ENV['GITHUB_TOKEN_2'])
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
