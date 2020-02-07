@@ -16,6 +16,8 @@ feature "As a logged in user" do
       expect(page).to have_link("adopt_dont_shop")
       expect(page).to have_link("adopt_dont_shop_paired")
       expect(page).to have_link("apartments_1908")
+
+      expect(page).to_not have_link("backend_module_0_capstone")
     end
   end
 end
