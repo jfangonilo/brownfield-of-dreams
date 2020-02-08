@@ -23,8 +23,15 @@
     <h2>Followers</h2>
     <% facade.followers.each do |follower| %>
         <ul class='followers'>
-          <li class='follower'><%= link_to follower.name, follower.url %>
+          <li class='follower'><%= link_to follower.handle, follower.url %>
         </ul>
+    <% end %>
+
+    <h2>Followings</h2>
+    <% facade.followings.each do |following| %>
+      <ul class='followings'>
+        <li class='following'><%= link_to following.handle, following.url %>
+      </ul>
     <% end %>
   <% end %>
   </section>

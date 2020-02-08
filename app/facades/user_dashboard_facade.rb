@@ -27,7 +27,13 @@ class UserDashboardFacade
 
   def followers
     service.follower_info.map do |data|
-      Follower.new(data)
+      Friend.new(data)
+    end
+  end
+
+  def followings
+    service.following_info.map do |data|
+      Friend.new(data)
     end
   end
 
