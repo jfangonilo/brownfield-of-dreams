@@ -16,8 +16,11 @@ feature "As a logged in user" do
 
     scenario "if user does not have token, 'Github' and repos do not display" do
       user = create(:user)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
       visit '/dashboard'
+
       expect(page).to_not have_content("Github")
       expect(page).not_to have_css('.repositories')
     end
