@@ -12,9 +12,6 @@ feature "As a logged in user" do
 
       expect(page).to have_content("Github")
       expect(page).to have_css('.repositories', count: 5)
-      within(first('.repositories')) do
-        expect(page).to have_link('activerecord-obstacle-course')
-      end
     end
 
     scenario "if user does not have token, 'Github' and repos do not display" do
