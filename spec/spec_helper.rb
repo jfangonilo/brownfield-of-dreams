@@ -1,7 +1,8 @@
 RSpec.configure do |config|
 
   config.before(:suite) do
-     DatabaseCleaner.clean_with(:truncation)
+    OmniAuth.config.mock_auth[:github] = nil
+    DatabaseCleaner.clean_with(:truncation)
    end
 
    config.before(:each) do
@@ -32,4 +33,14 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+
+def stub_oauth
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+    provider: 'github',
+    credentials: {
+      token: ENV['GITHUB_TOKEN']
+    }
+  })
 end
