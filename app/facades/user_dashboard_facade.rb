@@ -1,4 +1,6 @@
 class UserDashboardFacade
+  attr_reader :user
+
   def initialize(user)
     @user = user
   end
@@ -27,13 +29,13 @@ class UserDashboardFacade
 
   def followers
     service.follower_info.map do |data|
-      Friend.new(data)
+      GithubUser.new(data)
     end
   end
 
   def followings
     service.following_info.map do |data|
-      Friend.new(data)
+      GithubUser.new(data)
     end
   end
 
