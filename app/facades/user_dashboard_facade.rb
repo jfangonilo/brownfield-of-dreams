@@ -39,9 +39,12 @@ class UserDashboardFacade
     end
   end
 
+  def all_friends
+    user.friended_users
+  end
   private
 
   def service
-    GithubService.new(@user.github_token)
+    @service ||= GithubService.new(@user.github_token)
   end
 end
