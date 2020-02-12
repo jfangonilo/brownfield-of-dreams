@@ -4,8 +4,14 @@ class FriendshipsController < ApplicationController
 
     user_id = params[:friendship][:user_id]
 
-    Friendship.create(user_id: user_id, friended_user_id: friend.id)
+    friendship = Friendship.new(user_id: user_id, friended_user_id: friend.id)
 
-    render :dashboard_path
+    if friendship.save
+      flash[:success] = "#{friend.first_name} is now your friend!"
+      redirect_to "/dashboard"
+    else
+      flash[:error] = "Something went wrong. Can't add friend"
+      redirect_to "/dashboard"
+    end
   end
 end
