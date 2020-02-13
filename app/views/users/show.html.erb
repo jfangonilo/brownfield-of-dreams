@@ -28,15 +28,41 @@
       <% facade.followers.each do |follower| %>
         <ul class='followers'>
           <li class='follower'><%= link_to follower.handle, follower.url %>
+          <% if follower.has_account? %>
+            <section id="follower-<%= follower.github_id %>">
+
+            <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
+              <%= f.hidden_field(:user_id, value: facade.user.id) %>
+              <%= f.hidden_field(:friend_github_id, value: follower.github_id) %>
+              <%= f.submit "Add Friend" %>
+            <% end %>
+          </section>
+          <% end %>
         </ul>
       <% end %>
 
       <h2>Followings</h2>
-      <% facade.followings.each do |following| %>
-        <ul class='followings'>
-          <li class='following'><%= link_to following.handle, following.url %>
-        </ul>
-      <% end %>
+        <% facade.followings.each do |following| %>
+          <ul class='followings'>
+            <li class='following'><%= link_to following.handle, following.url %>
+            <% if following.has_account? %>
+              <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
+                <%= f.hidden_field(:user_id, value: facade.user.id) %>
+                <%= f.hidden_field(:friend_github_id, value: following.github_id) %>
+                <%= f.submit "Add Friend" %>
+              <% end %>
+            <% end %>
+          </ul>
+        <% end %>
+  ​
+        <% if facade.user.friendships %>
+          <h2>Friends</h2>
+          <% facade.all_friends.each do |friend| %>
+            <ul class='friends'>
+              <li class='friend'><%= friend.first_name %> <%= friend.last_name %>
+            </ul>
+          <% end %>
+        <% end %>
     <% end %>
   </section>
 </section>
