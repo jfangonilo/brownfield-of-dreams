@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   post '/activate', to: 'activate#create'
-  patch '/activate', to: 'activate#update'
 
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
@@ -39,7 +38,11 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
-  resources :users, only: [:new, :create, :update, :edit]
+  resources :users, only: [:new, :create, :update, :edit] do
+    member do
+      get :confirm
+    end
+  end
 
   resources :friendships, only: :create
 
