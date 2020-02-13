@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'welcome#index', as: :tag
   get '/register', to: 'users#new'
 
+  post '/activate', to: 'activate#create'
+  patch '/activate', to: 'activate#update'
+
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
     resources :tutorials, only: [:create, :edit, :update, :destroy, :new] do
