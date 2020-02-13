@@ -8,10 +8,9 @@ class FriendshipsController < ApplicationController
 
     if friendship.save
       flash[:success] = "#{friend.first_name} is now your friend!"
-      redirect_to "/dashboard"
     else
       flash[:error] = "Something went wrong. Can't add friend"
-      redirect_to "/dashboard"
     end
+    redirect_to '/dashboard'
   end
 end

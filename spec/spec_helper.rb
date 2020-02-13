@@ -41,6 +41,11 @@ def stub_oauth
     provider: 'github',
     credentials: {
       token: ENV['GITHUB_TOKEN']
+    },
+    extra: {
+      raw_info: {
+        id: ENV['GITHUB_ID']
+      }
     }
   })
 end

@@ -42,6 +42,7 @@ class UserDashboardFacade
   def all_friends
     user.friended_users
   end
+
   private
 
   def service
