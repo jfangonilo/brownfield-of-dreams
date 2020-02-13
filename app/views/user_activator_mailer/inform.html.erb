@@ -1,1 +1,1 @@
-<%=  button_to "Visit here to activate your account.", 'http://localhost:3000/activate', method: :patch %>
+<%=  link_to "Visit here to activate your account.", confirm_user_url(@user.id) %>
