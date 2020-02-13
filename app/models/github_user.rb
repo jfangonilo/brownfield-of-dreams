@@ -10,4 +10,12 @@ class GithubUser
   def account?
     User.find_by(github_id: github_id)
   end
+
+  def friend?
+    if Friendship.find_by(friended_user_id: account?.id)
+      true
+    else
+      false
+    end
+  end
 end
