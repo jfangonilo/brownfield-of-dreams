@@ -1,9 +1,10 @@
-<%= button_to "Activate", activate_path  %>
 <% if !facade.user.active? %>
-  <h1>This account has not yet been activated.</h1>
+    <%= button_to "Send activation email", activate_path  %>
+    <h1>This account has not yet been activated.</h1>
 <% end %>
 
 <% if facade.user.active? %>
+  <h1>Status: Active</h1>
   <% if !facade.user_has_token? %>
     <h1><%= link_to "Connect to GitHub", "/auth/github" %></h1>
   <% end %>
@@ -34,9 +35,8 @@
         <% facade.followers.each do |follower| %>
           <ul class='followers'>
             <li class='follower'><%= link_to follower.handle, follower.url %>
-            <% if follower.account? %>
+            <% if follower.account? && !follower.friend? %>
               <section id="follower-<%= follower.github_id %>">
-
               <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
                 <%= f.hidden_field(:user_id, value: facade.user.id) %>
                 <%= f.hidden_field(:friend_github_id, value: follower.github_id) %>
@@ -51,7 +51,7 @@
           <% facade.followings.each do |following| %>
             <ul class='followings'>
               <li class='following'><%= link_to following.handle, following.url %>
-              <% if following.account? %>
+              <% if following.account? && !following.friend? %>
                 <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
                   <%= f.hidden_field(:user_id, value: facade.user.id) %>
                   <%= f.hidden_field(:friend_github_id, value: following.github_id) %>
@@ -61,7 +61,7 @@
             </ul>
           <% end %>
     ​
-          <% if facade.user.friendships %>
+          <% if !facade.user.friendships.empty? %>
             <h2>Friends</h2>
             <% facade.all_friends.each do |friend| %>
               <ul class='friends'>
