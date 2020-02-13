@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       flash[:success] = "Logged in as #{user.first_name} #{user.last_name}."
-
+      UserActivatorMailer.inform(current_user).deliver_now
       redirect_to dashboard_path
     else
       flash[:error] = 'Username already exists'
@@ -29,6 +29,12 @@ class UsersController < ApplicationController
 
     current_user.update(github_token: token, github_id: github_id)
 
+    redirect_to dashboard_path
+  end
+
+  def confirm
+    user = User.find(params[:id])
+    user.update(active?: true)
     redirect_to dashboard_path
   end
 
