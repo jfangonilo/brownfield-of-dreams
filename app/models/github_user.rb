@@ -7,7 +7,7 @@ class GithubUser
     @github_id = data[:id]
   end
 
-  def has_account?
+  def account?
     User.find_by(github_id: github_id)
   end
 end

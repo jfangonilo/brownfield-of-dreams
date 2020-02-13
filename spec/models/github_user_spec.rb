@@ -19,7 +19,7 @@ describe GithubUser do
     gh_user = GithubUser.new(@attributes)
     db_user = create(:user, github_id: 56)
 
-    result = gh_user.has_account?
+    result = gh_user.account?
 
     expect(result.github_id).to eq(db_user.github_id)
   end

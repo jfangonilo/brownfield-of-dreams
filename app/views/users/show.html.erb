@@ -28,7 +28,7 @@
       <% facade.followers.each do |follower| %>
         <ul class='followers'>
           <li class='follower'><%= link_to follower.handle, follower.url %>
-          <% if follower.has_account? %>
+          <% if follower.account? %>
             <section id="follower-<%= follower.github_id %>">
 
             <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
@@ -45,7 +45,7 @@
         <% facade.followings.each do |following| %>
           <ul class='followings'>
             <li class='following'><%= link_to following.handle, following.url %>
-            <% if following.has_account? %>
+            <% if following.account? %>
               <%= form_for :friendship, url: friendships_path, method: :post do |f| %>
                 <%= f.hidden_field(:user_id, value: facade.user.id) %>
                 <%= f.hidden_field(:friend_github_id, value: following.github_id) %>

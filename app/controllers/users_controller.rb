@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     token = request.env['omniauth.auth']['credentials']['token']
 
     current_user.update(github_token: token, github_id: github_id)
-    
+
     redirect_to dashboard_path
   end
 
