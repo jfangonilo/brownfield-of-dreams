@@ -16,3 +16,12 @@ Style/Documentation:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 200
+
+Metrics/AbcSize:
+  Max: 20
