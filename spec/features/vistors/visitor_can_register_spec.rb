@@ -27,10 +27,7 @@ describe 'vister can create an account', :js, :vcr do
     click_on'Create Account'
 
     expect(current_path).to eq(dashboard_path)
-
-    expect(page).to have_content(email)
-    expect(page).to have_content(first_name)
-    expect(page).to have_content(last_name)
-    expect(page).to_not have_content('Sign In')
+    user = User.last
+    expect(user.active?).to be false
   end
 end

@@ -5,6 +5,7 @@ FactoryBot.define do
     last_name { Faker::Artist.name }
     password { "1234" }
     role { :default }
+    active? { true }
   end
 
   factory :admin, parent: :user do
